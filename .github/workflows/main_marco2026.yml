@@ -1,31 +1,28 @@
-from atproto import Client
-from program.scripts import geradorNew
-import time
-import os
+name: Bot Bluesky
 
-client = Client()
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
 
-# GitHub actions aqui
-user = os.environ.get("BSKY_USER")
-password = os.environ.get("BSKY_PASS")
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
 
-if not user or not password:
-    raise ValueError("Credenciais não encontradas")
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-client.login(user, password)
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
+      - name: Install dependencies
+        run: pip install atproto feedparser
 
-def post():
-    news = geradorNew.getANews()
-    print("Postando:", news)
-
-    try:
-        client.send_post(news[:300])  # limite Bluesky
-    except Exception as e:
-        print("Erro ao postar:", e)
-
-
-if __name__ == "__main__":
-    while True:
-        post()
-        time.sleep(1800)
+      - name: Run bot
+        run: python -m program.bot.botbsky
+        env:
+          BSKY_USER: ${{ secrets.BSKY_USER }}
+          BSKY_PASS: ${{ secrets.BSKY_PASS }}
