@@ -3,7 +3,7 @@ name: Bot Pure Bluesky
 on:
   schedule:
     - cron: "0 * * * *"  # a cada 1 hora
-  workflow_dispatch:
+  workflow_dispatch:     # permite rodar manualmente
 
 jobs:
   run-bot:

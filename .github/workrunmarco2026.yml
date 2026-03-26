@@ -1,0 +1,31 @@
+from atproto import Client
+from program.scripts import geradorNew
+import time
+import os
+
+client = Client()
+
+# GitHub actions aqui
+user = os.environ.get("BSKY_USER")
+password = os.environ.get("BSKY_PASS")
+
+if not user or not password:
+    raise ValueError("Credenciais não encontradas")
+
+client.login(user, password)
+
+
+def post():
+    news = geradorNew.getANews()
+    print("Postando:", news)
+
+    try:
+        client.send_post(news[:300])  # limite Bluesky
+    except Exception as e:
+        print("Erro ao postar:", e)
+
+
+if __name__ == "__main__":
+    while True:
+        post()
+        time.sleep(1800)
