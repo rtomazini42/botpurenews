@@ -5,7 +5,7 @@ import os
 
 client = Client()
 
-# pegar do ambiente (GitHub Actions vai fornecer)
+# GitHub actions aqui
 user = os.environ.get("BSKY_USER")
 password = os.environ.get("BSKY_PASS")
 
@@ -25,7 +25,6 @@ def post():
         print("Erro ao postar:", e)
 
 
-# loop (pra rodar localmente)
 if __name__ == "__main__":
     while True:
         post()
