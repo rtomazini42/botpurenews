@@ -27,6 +27,8 @@ armado
 explosao
 explosão
 explodiu
+câncer
+
 
 # ======================
 # CRIME
