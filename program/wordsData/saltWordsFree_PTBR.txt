@@ -1,1 +1,75 @@
-sabonete
+Despertador
+Guarda-chuva
+Geladeira
+Mouse
+Travesseiro
+Cadeira
+Ventilador
+Caneca
+Controle remoto
+Espelho
+Tênis
+Mochila
+Teclado
+Relógio
+Carregador
+Lâmpada
+Óculos
+Sofá
+Micro-ondas
+Garrafa
+Colher
+Escada
+Capacete
+Balde
+Apito
+Garrafa térmica
+Fone de ouvido
+Tesoura
+Martelo
+Chave inglesa
+Cinto
+Lanterna
+Caderno
+Pincel
+Régua
+Ímã
+Ventosa
+Fita adesiva
+Grampeador
+Envelope
+Caixa de papelão
+Rolo de pintura
+Peneira
+Panela
+Frigideira
+Copo
+Prato
+Toalha
+Saboneteira
+Escova de dentes
+Pente
+Secador de cabelo
+Ferro de passar
+Extensão elétrica
+Filtro de café
+Chaleira
+Liquidificador
+Aspirador de pó
+Controle de videogame
+Pen drive
+Câmera
+Tripé
+Almofada
+Cobertor
+Cortina
+Cabide
+Varal
+Lixeira
+Rodo
+Vassoura
+Placa de vídeo
+Livro
+Alface
+Tomate
+Laranja
