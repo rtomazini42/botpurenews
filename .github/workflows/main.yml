@@ -22,7 +22,7 @@ jobs:
         run: pip install atproto feedparser
 
       - name: Rodar bot
-        run: python -m program.bot.botsky
+        run: python -m program.bot.botbsky
         env:
           BSKY_USER: ${{ secrets.BSKY_USER }}
           BSKY_PASS: ${{ secrets.BSKY_PASS }}
