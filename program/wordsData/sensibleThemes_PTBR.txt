@@ -411,3 +411,16 @@ overdose
 # POLÍTICA SENSÍVEL
 # ======================
 vítima
+demite
+massacra
+agride
+bate em
+atropela
+destrói
+desmembra
+despedaça
+fere
+hospitalizado
+interna
+internado
+grave
