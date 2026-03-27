@@ -1,0 +1,32 @@
+name: Bot Bluesky 032026N
+
+on:
+  schedule:
+    # Roda nos minutos 0, 20 e 40 de cada hora
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+    # Permite rodar manualmente pelo botão "Run workflow"
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5 # Garante que o bot não fique "preso" infinitamente
+
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependências
+        run: |
+          pip install atproto feedparser
+
+      - name: Rodar bot
+        run: python -m program.bot.botbsky
+        env:
+          BSKY_USER: ${{ secrets.BSKY_USER }}
+          BSKY_PASS: ${{ secrets.BSKY_PASS }}
