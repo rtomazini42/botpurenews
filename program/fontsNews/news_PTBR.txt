@@ -12,7 +12,6 @@ https://feeds.folha.uol.com.br/poder/rss091.xml
 https://feeds.folha.uol.com.br/mundo/rss091.xml
 https://feeds.folha.uol.com.br/tec/rss091.xml
 https://www.camara.leg.br/noticias/rss
-http://www.adrenaline.com.br/rss.html
 https://feeds.bbci.co.uk/portuguese/rss.xml
 https://admin.cnnbrasil.com.br/sitemap-news.xml
 https://rss.uol.com.br/feed/tecnologia.xml
