@@ -167,13 +167,11 @@ contrabando
 capota
 arremessados
 policiais
+policial
 hospitalizados
 atentado
 vítimas
 
-# ======================
-# ABUSO / VIOLÊNCIA SEXUAL
-# ======================
 # ======================
 # ABUSO / VIOLÊNCIA SEXUAL
 # ======================
@@ -330,6 +328,8 @@ hostilidade
 Israel
 Palestina
 Irã
+Epstein
+afoga
 
 # ======================
 # RACISMO / DISCRIMINAÇÃO

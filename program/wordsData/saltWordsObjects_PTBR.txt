@@ -73,3 +73,80 @@ Livro
 Alface
 Tomate
 Laranja
+cabo HDMI
+cabo USB
+adaptador de tomada
+fonte de alimentação
+roteador
+modem
+switch de rede
+placa-mãe
+processador
+cooler
+water cooler
+gabinete gamer
+mousepad
+tecla espaço
+pão francês
+pão de forma
+ovo cozido
+ovo mexido
+arroz
+feijão
+macarrão
+pizza
+hambúrguer
+cachorro-quente
+batata frita
+bolo de chocolate
+bolo de aniversário
+salgadinho
+pipoca
+pastel
+coxinha
+farofa
+margarina
+maionese
+ketchup
+mostarda
+tubo de ensaio
+microscópio
+termômetro
+barril químico
+frasco misterioso
+ampola
+seringa
+cápsula
+câmara de vácuo
+porta emperrada
+janela quebrada
+telhado vazando
+tomada solta
+interruptor estranho
+chuveiro elétrico
+registro de água
+caixa d'água
+fio desencapado
+objeto não identificado
+coisa estranha
+negócio esquisito
+treco
+bagulho
+troço
+parada aleatória
+item suspeito
+artefato antigo
+relíquia esquecida
+coisa amaldiçoada
+objeto possuído
+item lendário
+drop raro
+loot estranho
+teclado quebrado
+mouse sem fio (literalmente)
+carregador falso
+cabo duvidoso
+controle sem pilha
+geladeira aberta
+micro-ondas ligado vazio
+ventilador barulhento
