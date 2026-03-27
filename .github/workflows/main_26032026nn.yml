@@ -4,7 +4,7 @@ on:
   schedule:
     # Roda nos minutos 05 e 35 de cada hora
     # Evita o atraso do GitHub no minuto 00
-    - cron: '*/32 * * * *'
+    - cron: '*/20 * * * *'
   workflow_dispatch:
 
 jobs:
