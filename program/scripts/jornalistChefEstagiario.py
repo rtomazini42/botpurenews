@@ -66,7 +66,7 @@ def loadWordLists():
 
 
 # função de cortes com RE, não sei como, só sei que é assim
-def smartCut(title):
+'''def smartCut(title):
     # tenta cortar em vírgula, dois pontos ou "que"
 
     # 1. tenta cortar por pontuação
@@ -80,7 +80,32 @@ def smartCut(title):
         return parts[0], "".join(parts[1:])
 
     # 3. fallback (corte simples)
-    return cutTitles(title)
+    return cutTitles(title)'''
+
+def smartCut(title): #thanks copilot
+    # Conectivos que naum podem ficar no final da primeira parte nem no início da segunda
+    bad_words = r'\b(que|quando|pela|após|enquanto|com|de|do|da|dos|das|em|no|na|nos|nas|para|pro|pra|e|ou|mas|porém)\b'
+
+    # 1. Tenta cortar por pontuação forte
+    parts = re.split(r'[,:;]', title)
+    if len(parts) > 1:
+        p1, p2 = parts[0].strip(), " ".join(parts[1:]).strip()
+        # Se a primeira parte terminar em "lixo", limpa
+        p1 = re.sub(bad_words + r'\s*$', '', p1, flags=re.IGNORECASE).strip()
+        return p1, p2
+
+    # 2. Se não tem pontuação, corta no meio, mas foge das "bad_words"
+    words = title.split()
+    if len(words) < 4: return title, ""
+    
+    mid = len(words) // 2
+    # Se a palavra do meio for um conectivo, pula ela
+    if re.match(bad_words, words[mid-1], re.IGNORECASE):
+        mid -= 1
+        
+    p1 = " ".join(words[:mid])
+    p2 = " ".join(words[mid:])
+    return p1, p2
 
 
 def cutTitles(title):
@@ -90,6 +115,25 @@ def cutTitles(title):
 
     middle = len(words) // 2
     return " ".join(words[:middle]), " ".join(words[middle:])
+
+def fixConnectiveCollisions(text):
+    # Lista de substituições para conectivos grudados
+    substitutions = [
+        (r'\bcom\s+no\b', 'no'),        # "com no" -> "no"
+        (r'\bcom\s+na\b', 'na'),        # "com na" -> "na"
+        (r'\bcom\s+o\b', 'com o'),      # Garante espaço correto
+        (r'\bem\s+no\b', 'no'),         # "em no" -> "no"
+        (r'\bde\s+do\b', 'do'),         # "de do" -> "do"
+        (r'\bpara\s+pro\b', 'pro'),     # "para pro" -> "pro"
+        (r'\bcom\s+com\b', 'com'),      # "com com" -> "com"
+        (r'\bque\s+que\b', 'que'),      # "que que" -> "que"
+        (r'\bcom\s+em\b', 'em'),        # "com em" -> "em"
+    ]
+    
+    for pattern, replacement in substitutions:
+        text = re.sub(pattern, replacement, text, flags=re.IGNORECASE)
+    
+    return text
 
 
 # estilistica
@@ -104,7 +148,7 @@ def applyNewsStyle(title):
         "{} chama atenção",
         "{} vira destaque",
         "{}, veja as imagens",
-        "{}, se cadraste", 
+        "{} #nuticia", 
         "{} s̵u̵d̷o̵ ̸a̸p̵t̴-̶g̸e̷t̵ ̵v̸i̸d̸a̴",
         "{} #getlife",
         "{} #bot",
@@ -131,36 +175,52 @@ def safeApply(func, title):
     return title
 
 
-def finalizeTitle(title):  # isso é trabalho duplicado?
-    title = re.sub(r'\s+', ' ', title)
-    #title = title.strip().capitalize()
-    #title = applyNewsStyle(title)
+def finalizeTitle(title):
+    # 1. Remove espaços duplicados
+    title = re.sub(r'\s+', ' ', title).strip()
+    
+    # 2. Limpeza de colisões (ex: "do em" -> "em")
+    # Agora só remove se forem preposições grudadas, sem tocar na pontuação
+    prep_collision = r'\b(com|de|do|da|em|no|na|para|por|e)\s+(com|de|do|da|em|no|na|para|por|e)\b'
+    title = re.sub(prep_collision, r'\2', title, flags=re.IGNORECASE)
+    
+    # 3. Arruma o espaço das vírgulas (Garante "palavra, palavra")
+    title = re.sub(r'\s+,', ',', title) # remove espaço antes
+    title = re.sub(r',([^\s])', r', \1', title) # adiciona espaço depois se não tiver
+    
+    # 4. Remove preposição pendurada no FINAL (antes dos emojis/estilo)
+    title = re.sub(r'\s+(com|de|do|da|em|no|na|para|e|o|a|os|as|que)$', '', title, flags=re.IGNORECASE)
+
+    # 5. Capitalização
+    if len(title) > 0:
+        title = title[0].upper() + title[1:]
+        
     return title
 
 def isValidPart(text):
-    return text and len(text.split()) >= 2
-
-
+    if not text or len(text.split()) < 2:
+        return False
+    # Evita que a parte termine em conectivos que pedem complemento
+    invalid_ends = r'\b(com|de|para|em|que|o|a|os|as|e|no|na)$'
+    if re.search(invalid_ends, text.strip(), flags=re.IGNORECASE):
+        return False
+    return True
 
 def makeNewNewsShuffle(news_list):
-    if len(news_list) < 2:
-        return []
-
+    if len(news_list) < 2: return []
     new_news = []
 
     for _ in range(len(news_list)):
         n1, n2 = random.sample(news_list, 2)
-
         p1, _ = smartCut(n1)
         _, p2 = smartCut(n2)
 
-        # 🔥 validação
         if not isValidPart(p1) or not isValidPart(p2):
             continue
 
-        new_title = f"{p1} {p2}".strip()
+        # Adicionamos uma vírgula na união para dar ritmo
+        new_title = f"{p1}, {p2}".strip()
         new_title = applyNewsStyle(new_title)
-
         new_news.append(new_title)
 
     return new_news
@@ -368,23 +428,18 @@ def endsBadly(text):
     return re.search(r'\b(em|de|para|com)$', text.strip())
 
 def replaceConnectorsWithComma(title):
-    # conectivos que viram vírgula
+    # Conectivos que viram vírgula (adicionamos mais alguns)
     connectors = [
-        r'\be\b',
-        r'\bmas\b',
-        r'\bporém\b',
-        r'\bno entanto\b',
-        r'\bcontudo\b',
-        r'\balém disso\b',
-        r'\bdepois que\b',
-        r'\bquando\b',
-        r'\benquanto\b',
+        r'\s+e\s+', r'\s+mas\s+', r'\s+porém\s+', 
+        r'\s+no entanto\s+', r'\s+contudo\s+', 
+        r'\s+além disso\s+', r'\s+depois que\s+'
     ]
 
     for c in connectors:
-        title = re.sub(c, ',', title, flags=re.IGNORECASE)
+        # Troca o conectivo por vírgula + espaço
+        title = re.sub(c, ', ', title, flags=re.IGNORECASE)
 
-    # limpa vírgulas duplicadas e espaços
+    # Limpa vírgulas duplicadas (,,) e espaços extras antes da vírgula
     title = re.sub(r'\s*,\s*', ', ', title)
     title = re.sub(r',+', ',', title)
 
@@ -437,7 +492,7 @@ def getOneNews():
                 lambda: makeNewNewsChars(clean_news, wordLists["chars"])
             ],
             wordLists
-        ), 1),
+        ), 4),
         (lambda: combineStyles(
             clean_news,
             [
@@ -445,12 +500,13 @@ def getOneNews():
                 lambda: makeNewNewsShuffle(clean_news)
             ],
             wordLists
-        ), 3),
+        ), 1),
 
-        (lambda: makeNewNewsShuffle(clean_news), 5),
-        (lambda: makeNewNewsChars(clean_news, wordLists["chars"]), 1),
+        (lambda: makeNewNewsShuffle(clean_news), 8),
+        (lambda: makeNewNewsChars(clean_news, wordLists["chars"]), 2),
         #(lambda: makeFirstPartNews(clean_news), 3),
         (lambda: makeNewNewsPlace(clean_news, wordLists["places"]), 2),
+        (lambda: makeDadaLikeNews(clean_news),3),
     ]
 
     funcs = [g for g, _ in generators]
