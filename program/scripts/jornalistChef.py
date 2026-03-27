@@ -315,8 +315,7 @@ def combineStyles(news_list, generators, wordLists):
 
     title = random.choice(generated)
 
-    extra_generators = [
-        
+    extra_generators = [ #:V colocar mais?
         lambda t: makePlotTwistNews([t])[0],
         lambda t: makeNewNewsPlace([t], wordLists["places"])[0],
         lambda t: makeNewNewsChars([t], wordLists["chars"])[0],
@@ -330,7 +329,44 @@ def combineStyles(news_list, generators, wordLists):
         except:
             pass
 
+    #  Trocando por virgula :D
+    title = replaceConnectorsWithComma(title)
+
     return [title]
+
+def replaceConnectorsWithComma(title):
+    # conectivos que viram vírgula
+    connectors = [
+        r'\be\b',
+        r'\bmas\b',
+        r'\bporém\b',
+        r'\bno entanto\b',
+        r'\bcontudo\b',
+        r'\balém disso\b',
+        r'\bdepois que\b',
+        r'\bquando\b',
+        r'\benquanto\b',
+    ]
+
+    for c in connectors:
+        title = re.sub(c, ',', title, flags=re.IGNORECASE)
+
+    # limpa vírgulas duplicadas e espaços
+    title = re.sub(r'\s*,\s*', ', ', title)
+    title = re.sub(r',+', ',', title)
+
+    return title.strip()
+
+def splitByCommaStyle(title):
+    parts = re.split(r'\s+e\s+|\s+mas\s+|\s+porém\s+|\s+e\s+', title)
+
+    # limpa espaços
+    parts = [p.strip() for p in parts if p.strip()]
+
+    if len(parts) > 1:
+        return ", ".join(parts)
+
+    return title
 
 
 # Essa aqui vou botar para testar

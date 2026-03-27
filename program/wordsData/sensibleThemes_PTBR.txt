@@ -2,6 +2,9 @@
 # VIOLÊNCIA / MORTE
 # ======================
 morte
+escravização
+escravidão
+escravo
 morre
 atropelado
 morrer
