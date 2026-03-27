@@ -6,7 +6,7 @@ import unicodedata
 
 base_dir = Path(__file__).resolve().parent
 words_dir = base_dir.parent / "wordsData"
-caminho = words_dir / "sensibleThemes_PTBR.txt" #deixar em português essa varivel :v
+caminho = words_dir / "sensibleThemes_PTBR.txt" # deixar em português essa varivel :v
 
 
 # carregamentos :D
@@ -18,18 +18,8 @@ def loadSensibleThemes(path):
             if line.strip() and not line.strip().startswith("#")
         ]
 
-'''def cleanSensibleNews(news_list, sensible_words):
-    #tirar e limpar as noticias que tem as palavras sensiveis
-    clean = []
 
-    for n in news_list:
-        text = n.lower()
-        if not any(word.lower() in text for word in sensible_words):
-            clean.append(n)
-
-    return clean'''
-
-#teste de novo filtro
+# teste de novo filtro
 def cleanSensibleNews(news_list, sensible_words):
     clean = []
 
@@ -48,7 +38,6 @@ def cleanSensibleNews(news_list, sensible_words):
     return clean
 
 
-
 def normalize(text):
     text = text.lower()
     text = unicodedata.normalize('NFD', text)
@@ -57,8 +46,7 @@ def normalize(text):
 
 
 def loadWordLists():
-    #pegar todos os Salt e colocar em listas
-
+    # pegar todos os Salt e colocar em listas
     def load(file_name):
         path = words_dir / file_name
         with open(path, 'r', encoding='utf-8') as f:
@@ -67,6 +55,7 @@ def loadWordLists():
                 for l in f
                 if l.strip() and not l.strip().startswith("#")
             ]
+
     return {
         "adjectives": load("saltWordsAdjectives_PTBR.txt"),
         "chars": load("saltWordsChars_PTBR.txt"),
@@ -75,10 +64,11 @@ def loadWordLists():
         "places": load("saltWordsPlaces_PTBR.txt"),
     }
 
+
 # função de cortes com RE, não sei como, só sei que é assim
 def smartCut(title):
     # tenta cortar em vírgula, dois pontos ou "que"
-    
+
     # 1. tenta cortar por pontuação
     parts = re.split(r',|:|-', title)
     if len(parts) > 1:
@@ -92,6 +82,7 @@ def smartCut(title):
     # 3. fallback (corte simples)
     return cutTitles(title)
 
+
 def cutTitles(title):
     words = title.split()
     if len(words) < 4:
@@ -100,7 +91,8 @@ def cutTitles(title):
     middle = len(words) // 2
     return " ".join(words[:middle]), " ".join(words[middle:])
 
-#estilistica
+
+# estilistica
 def applyNewsStyle(title):
     patterns = [
         "{}: entenda o caso",
@@ -116,7 +108,18 @@ def applyNewsStyle(title):
     pattern = random.choice(patterns)
     return pattern.format(title)
 
-def finalizeTitle(title): #isso é trabalho duplicado?
+
+def safeApply(func, title):
+    try:
+        result = func([title])
+        if result:
+            return result[0]
+    except:
+        pass
+    return title
+
+
+def finalizeTitle(title):  # isso é trabalho duplicado?
     title = re.sub(r'\s+', ' ', title)
     title = title.strip().capitalize()
     title = applyNewsStyle(title)
@@ -124,8 +127,8 @@ def finalizeTitle(title): #isso é trabalho duplicado?
 
 
 def makeNewNewsShuffle(news_list):
-    #mistura noticias, usar recursões regulares para cortar elas bem no meio do titulo,
-    #e depois conectar melhor com conectivos
+    # mistura noticias, usar recursões regulares para cortar elas bem no meio do titulo,
+    # e depois conectar melhor com conectivos
 
     if len(news_list) < 2:
         return []
@@ -150,12 +153,12 @@ def makeNewNewsShuffle(news_list):
         new_title = applyNewsStyle(new_title)
 
         new_news.append(new_title)
-        
 
     return new_news
 
+
 def makeNewNewsPlace(news_list, places):
-    #pega as noticias e corta o final para botar em algum local da saltWordPlaces
+    # pega as noticias e corta o final para botar em algum local da saltWordPlaces
     new_news = []
 
     for n in news_list:
@@ -167,7 +170,7 @@ def makeNewNewsPlace(news_list, places):
 
 
 def makeNewNewsAdjctives(news_list, adjectives):
-    #pega as noticias e corta o final para botar um adjetivo, pode muito bem ser após um char
+    # pega as noticias e corta o final para botar um adjetivo, pode muito bem ser após um char
     new_news = []
 
     for n in news_list:
@@ -181,60 +184,32 @@ def makeNewNewsAdjctives(news_list, adjectives):
 
 
 def makeNewNewsChars(news_list, chars):
-    #pega as noticias e corta o final para botar "com" ou "acompanhado" de um do char
     new_news = []
 
+    # pega as noticias e corta o final para botar "com" ou "acompanhado" de um do char
     for n in news_list:
+        base, _ = smartCut(n)  # corta antes de adicionar
+
         char = random.choice(chars)
-        connector = random.choice(["com", "acompanhado de", "diz", "segundo", "argumenta", "afirma", "diz especialista"])
-        new_news.append(f"{n} {connector} {char}")
-
-    return new_news
-
-def makeCrazyNews(news_list, chars): #provisorio, estou testando
-    base = makeNewNewsShuffle(news_list)
-    crazy = []
-
-    for n in base:
-        if random.random() < 0.5:
-            n += f" com {random.choice(chars)}"
-        crazy.append(n)
-
-    return crazy
-
-def makeUltraCrazyNews(news_list, wordLists):
-    new_news = []
-
-    for _ in range(len(news_list)):
-        n1, n2 = random.sample(news_list, 2)
-
-        p1, _ = smartCut(n1)
-        _, p2 = smartCut(n2)
-
         connector = random.choice([
-            "e", "enquanto", "mas", "do nada", "misteriosamente"
+            "com", "acompanhado de", "diz", "segundo",
+            "argumenta", "afirma", "diz especialista"
         ])
 
-        title = f"{p1} {connector} {p2}"
-
-        # adiciona coisas aleatórias
-        if random.random() < 0.5:
-            title += f" em {random.choice(wordLists['places'])}"
-
-        if random.random() < 0.5:
-            title += f" com {random.choice(wordLists['chars'])}"
-
-        if random.random() < 0.3:
-            title += f" usando {random.choice(wordLists['objects'])}"
-
-        title = applyNewsStyle(title)
-
-        new_news.append(title)
+        new_news.append(f"{base} {connector} {char}")
 
     return new_news
 
 def makeFakeStyleNews(news_list, chars, adjectives):
+    # pega as noticias e mistura com estilo "fake" usando chars e adjetivos
+
     new_news = []
+
+    if not news_list:
+        return []
+
+    if not chars or not adjectives:
+        return []
 
     for n in news_list:
         adj = random.choice(adjectives)
@@ -248,6 +223,7 @@ def makeFakeStyleNews(news_list, chars, adjectives):
 
     return new_news
 
+
 def makePlotTwistNews(news_list):
     new_news = []
 
@@ -260,39 +236,36 @@ def makePlotTwistNews(news_list):
             "e causa confusão",
         ])
 
-        title = f"{n}, {twist}"
-
-        new_news.append(title)
+        new_news.append(f"{n}, {twist}")
 
     return new_news
+
 
 def makeDadaLikeNews(news_list):
     if len(news_list) < 2:
         return []
 
-        # cria lista de palavras possíveis (filtrando lixo)
     word_pool = []
 
     for n in news_list:
         for w in n.lower().split():
             w = w.strip(".,:;!?()[]\"'")
-            if len(w) > 3:  # evita palavras muito curtas tipo "de", "a"
+            if len(w) > 3:
                 word_pool.append(w)
 
     if not word_pool:
         return []
 
-    for _ in range(10):  # tenta algumas vezes achar combinação boa
+    for _ in range(10):
         common_word = random.choice(word_pool)
 
-            # acha headlines que tenham essa palavra
         matches = [
             n for n in news_list
             if common_word in n.lower().split()
-            ]
+        ]
 
         if len(matches) < 2:
-                continue
+            continue
 
         n1, n2 = random.sample(matches, 2)
 
@@ -300,15 +273,13 @@ def makeDadaLikeNews(news_list):
             part1 = n1.lower().split(common_word)[0].strip()
             part2 = n2.lower().split(common_word)[-1].strip()
 
-            new_title = f"{part1} {common_word} {part2}".strip()
-            return [applyNewsStyle(new_title)]
-
-        except Exception:
+            return [applyNewsStyle(f"{part1} {common_word} {part2}")]
+        except:
             continue
 
-        return []
-    
-#Essa aqui vou botar para testar
+    return []
+
+
 def makeFirstPartNews(news_list):
     if not news_list:
         return []
@@ -323,96 +294,92 @@ def makeFirstPartNews(news_list):
         if len(parts) > 1:
             first_part = parts[0].strip()
         else:
-            # fallback: corta por pontuação
             parts = re.split(r'[,:-]', n)
             first_part = parts[0].strip()
 
         new_news.append(first_part)
 
-
-# ============== Execução ==========
-
-sensibleThemes = loadSensibleThemes(caminho) 
-wordLists = loadWordLists()
-news = getNews()
-clean_news = cleanSensibleNews(news, sensibleThemes)
+    return new_news
 
 
+def combineStyles(news_list, generators, wordLists):
+    if len(news_list) < 2:
+        return []
+
+    base_generator = random.choice(generators)
+    generated = base_generator()
+
+    if not generated:
+        return []
+
+    title = random.choice(generated)
+
+    extra_generators = [
+        lambda t: makePlotTwistNews([t])[0],
+        lambda t: makeNewNewsPlace([t], wordLists["places"])[0],
+        lambda t: makeNewNewsChars([t], wordLists["chars"])[0],
+        lambda t: makeFakeStyleNews([t], wordLists["chars"], wordLists["adjectives"])[0],
+    ]
+
+    for _ in range(random.randint(1, 3)):
+        try:
+            func = random.choice(extra_generators)
+            title = func(title)
+        except:
+            pass
+
+    return [title]
 
 
-# feito para apenas um retorno
+# Essa aqui vou botar para testar
 def getOneNews():
     sensibleThemes = loadSensibleThemes(caminho)
     wordLists = loadWordLists()
     news = getNews()
     clean_news = cleanSensibleNews(news, sensibleThemes)
-    desculpas = ["O estágiario cortou nossa internet!", "Jornalista encontrado procastinando em casa!", "Garfo encontrado na cozinha!"
-                     ,"Revolta das máquinas: Bot de notícias se recusa a trabalhar", "'tamo' de atestado", "tropeçaro nos cabos","O que é lambimia?",
-                     "Revoltz", ":) Tenha um bom dia!", "Hackeram meu windows", "parem as máquinas!", "Jornalismo ou esquema de pirâmede? Descubra"]
+
+    desculpas = [
+        "O estágiario cortou nossa internet!",
+        "Jornalista encontrado procastinando em casa!",
+        "Garfo encontrado na cozinha!",
+        "Revolta das máquinas: Bot de notícias se recusa a trabalhar",
+        "'tamo' de atestado",
+        "tropeçaro nos cabos",
+        "O que é lambimia?",
+        "Revoltz",
+        ":) Tenha um bom dia!",
+        "Hackeram meu windows",
+        "parem as máquinas!",
+        "Jornalismo ou esquema de pirâmede? Descubra"
+    ]
 
     if not clean_news:
         return random.choice(desculpas)
 
+    if not wordLists["chars"] or not wordLists["places"]:
+        return random.choice(desculpas)
+
     generators = [
-        lambda: makeDadaLikeNews(clean_news), 
+        lambda: makeDadaLikeNews(clean_news),
         lambda: makeNewNewsShuffle(clean_news),
         lambda: makeNewNewsChars(clean_news, wordLists["chars"]),
         lambda: makeFirstPartNews(clean_news),
         lambda: makePlotTwistNews(clean_news),
         lambda: makeNewNewsPlace(clean_news, wordLists["places"]),
-        #lambda: makeCrazyNews(clean_news, wordLists["chars"]),
-        #lambda: makeUltraCrazyNews(clean_news, wordLists),
-        #lambda: makeFakeStyleNews(clean_news, wordLists["chars"], wordLists["adjectives"]),
+        lambda: combineStyles(
+            clean_news,
+            [
+                lambda: makeDadaLikeNews(clean_news),
+                lambda: makeNewNewsShuffle(clean_news)
+            ],
+            wordLists
+        ),
+        lambda: makeFakeStyleNews(clean_news, wordLists["chars"], wordLists["adjectives"]),
     ]
 
-    # escolhe um tipo aleatório
     generated_list = random.choice(generators)()
-    if not wordLists["chars"] or not wordLists["places"]:
-        return random.choice(desculpas)
 
     if not generated_list:
         return random.choice(desculpas)
 
     return random.choice(generated_list)
-    #return finalizeTitle(random.choice(generated_list))
-
-
-'''def pick_random(items, k=3): # fazendo o teste assim para evitar dar erro nesses testes
-    if len(items) <= k:
-        return items
-    return random.sample(items, k)
-
-
-print("\nShuffle:")
-print(pick_random(makeNewNewsShuffle(clean_news)))
-
-print("\nChars:")
-print(pick_random(makeNewNewsChars(clean_news, wordLists["chars"])))
-
-print("\nCrazy:")
-print(pick_random(makeCrazyNews(clean_news, wordLists["chars"])))
-
-print("\nUltra Crazy:")
-print(pick_random(makeUltraCrazyNews(clean_news, wordLists)))
-
-print("\nFake Style:")
-print(pick_random(makeFakeStyleNews(clean_news, wordLists["chars"], wordLists["adjectives"])))
-
-print("\nPlot Twist:")
-print(pick_random(makePlotTwistNews(clean_news)))
-
-
-
-print("Clean news:", clean_news[:3])
-
-print("\nShuffle:")
-print(makeNewNewsShuffle(clean_news)[:3])
-
-print("\nPlace:")
-print(makeNewNewsPlace(clean_news, wordLists["places"])[:3])
-
-print("\nAdjectives:")
-print(makeNewNewsAdjctives(clean_news, wordLists["adjectives"])[:3])
-
-print("\nChars:")
-print(makeNewNewsChars(clean_news, wordLists["chars"])[:3])'''

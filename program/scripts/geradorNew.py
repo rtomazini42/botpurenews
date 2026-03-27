@@ -7,3 +7,5 @@ def PrintNews(n):
 
 def getANews():
     return getOneNews()
+
+
