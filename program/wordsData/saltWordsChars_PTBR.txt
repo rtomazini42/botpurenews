@@ -32,6 +32,16 @@ Carlo Ancelotti
 Dorival Jr
 Careca da Havam
 Karl Marx
+Moraes
+Hideo Kojima
+Del Toro
+Palhaço Cosquinha
+Palhaça Manteguinha
+Clarice Lispector
+Agatha Christie
+Sherlock
+Ciro Games
+
 
 # ======================
 # FILMES / SÉRIES
@@ -86,3 +96,35 @@ Monstro ancestral despertado
 CEO do Sexo
 ET Bilu
 Linus Torvalds
+Construtora Odebretch
+MRV imóveis
+Uber
+Nike
+Seleção Brasileira
+Seleção Francesa
+Seleção Argentina
+Gooseworx
+John Mastodon
+John Bluesky
+Bentinho
+Machado de Assis
+programador
+professor de computação
+professor de letras
+professor de história
+professor de matemática
+professor de física
+professor
+professora de computação
+professora de letras
+professora de história
+professora de matemática
+professora de física
+professora
+Doutor Bumbum
+Doutor Bactéria
+Doutor Jonas Pinto
+Dra Diva Ginaberta
+Dr Botelho Pinto
+Professor Jaime Rabei
+Sr Paulim Pinho

@@ -168,7 +168,7 @@ capota
 arremessados
 policiais
 hospitalizados
-
+atentado
 
 # ======================
 # ABUSO / VIOLÊNCIA SEXUAL
