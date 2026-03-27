@@ -20,7 +20,8 @@ def getNews():
     urls = random.sample(rss_list, k=min(5, len(rss_list))) #ao invés do choice, usarei o sample, evitar duplicatas
 
     for url in urls:
-        feed = feedparser.parse(url)
+        #feed = feedparser.parse(url)
+        feed = feedparser.parse(url, request_headers={'User-Agent': 'Mozilla/5.0'})
         if feed.bozo:
             #print("Erro:", feed.bozo_exception) #haha, bozo
             continue
