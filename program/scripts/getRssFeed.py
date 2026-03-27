@@ -18,9 +18,9 @@ def getNews():
         return []
 
     urls = random.sample(rss_list, k=min(5, len(rss_list))) #ao invés do choice, usarei o sample, evitar duplicatas
-    print("Feeds selecionados:") #colocando por controle por enquanto
-    for url in urls:
-        print(url)
+    #print("Feeds selecionados:") #colocando por controle por enquanto
+    #for url in urls:
+    #    print(url)
 
     for url in urls:
         #feed = feedparser.parse(url)

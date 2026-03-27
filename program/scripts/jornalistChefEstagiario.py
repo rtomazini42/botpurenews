@@ -5,6 +5,8 @@ import re
 import unicodedata
 
 
+
+
 base_dir = Path(__file__).resolve().parent
 words_dir = base_dir.parent / "wordsData"
 caminho = words_dir / "sensibleThemes_PTBR.txt" # deixar em português essa varivel :v
@@ -264,9 +266,10 @@ def makeNewNewsChars(news_list, chars):
 
         char = random.choice(chars)
         connector = ', ' + random.choice([
-            "com", "acompanhado de", "diz", "segundo",
+            "com", "acompanhado de", "diz", "segundo","diz","diz","diz","diz","diz","diz","diz",
             "argumenta", "afirma", "diz especialista",
-            "complementa", "escreve", "posta"
+            "complementa", "escreve", "posta","relata",
+            "conclui", "comenta", "tweeta", "debocha"
         ])
 
         new_news.append(f"{base}{connector} {char}")
@@ -502,8 +505,8 @@ def getOneNews():
             wordLists
         ), 1),
 
-        (lambda: makeNewNewsShuffle(clean_news), 8),
-        (lambda: makeNewNewsChars(clean_news, wordLists["chars"]), 2),
+        (lambda: makeNewNewsShuffle(clean_news), 6),
+        (lambda: makeNewNewsChars(clean_news, wordLists["chars"]), 4),
         #(lambda: makeFirstPartNews(clean_news), 3),
         (lambda: makeNewNewsPlace(clean_news, wordLists["places"]), 2),
         (lambda: makeDadaLikeNews(clean_news),3),
