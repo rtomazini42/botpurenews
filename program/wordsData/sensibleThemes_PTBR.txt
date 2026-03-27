@@ -123,6 +123,7 @@ autolesao
 autolesão
 se cortar
 tirar a própria vida
+enchetes
 
 
 # ======================
@@ -158,79 +159,234 @@ contrabando
 # ======================
 # ABUSO / VIOLÊNCIA SEXUAL
 # ======================
+# ======================
+# ABUSO / VIOLÊNCIA SEXUAL
+# ======================
 abuso
 abusar
+abusado
+abusada
+abuso sexual
 violacao
-violação
 violado
+violada
 estupro
+estuprar
 estuprador
+estuprada
 assedio
+assédio
 assediar
+assediado
 exploracao
 exploração
-exploração sexual
 exploracao sexual
+exploração sexual
+explorar sexualmente
 coercao
 coerção
-pornográfico
-femininas
-masculinas
+coagir
+coagido
 aliciamento
+aliciar
+aliciado
+grooming
+pedofilia
+pedofilo
+pedófilo
+pedofila
+pedófila
+pornografico
+pornográfico
+pornografia
+conteudo sexual
+conteúdo sexual
+material sexual
+imagens intimas
+imagens íntimas
+incel
+incels
 menores
-sexualizadas
+menor de idade
+crianca
+criança
+adolescente
+sexualizacao
+sexualização
+sexualizado
+sexualizada
+exploracao de menores
+exploração de menores
+abuso de menor
+violencia sexual
+violência sexual
+violacao sexual
+violação sexual
+importunacao
+importunação
+importunacao sexual
+importunação sexual
+toque indevido
+exibir partes intimas
+exibir partes íntimas
+exposição indecente
 
 # ======================
 # GUERRA / CONFLITO
 # ======================
 guerra
+guerras
 conflito
+conflitos
+conflito armado
 combate
+combates
 batalha
+batalhas
 bombardeio
-bomba
+bombardeios
+bombardeamento
+bombas
+explosao
+explosão
+explosivo
+explosivos
 militar
+militares
 exercito
+exército
 forcas armadas
+forças armadas
+forca militar
+força militar
+ataque
+ataques
 ataque militar
+ataque armado
+ataque aéreo
 invasao
+invasão
 invadir
 ocupacao
+ocupação
+ocupado
+ocupada
+cerco
+cerco militar
+ofensiva
+contraofensiva
 terrorismo
 terrorista
-Israel
-Irã
-Palestina
-Libano
-Líbano
+terroristas
+missil
 míssil
+misseis
+mísseis
 nuclear
+arma nuclear
+armas nucleares
+guerra nuclear
+disputa territorial
+zona de guerra
+zona de conflito
+campo de batalha
+mobilizacao militar
+mobilização militar
+milicia
+milícia
+milicianos
+rebeldes
+insurgentes
+rebelião
+rebelliao
+golpe militar
+estado de guerra
+cessar-fogo
+trégua
+genocidio
+genocídio
+limpeza etnica
+limpeza étnica
+crise militar
+confronto
+confrontos
+hostilidades
+hostilidade
+Israel
+Palestina
+Irã
 
 # ======================
 # RACISMO / DISCRIMINAÇÃO
 # ======================
 racismo
 racista
+racistas
 preconceito
+preconceituoso
+preconceituosa
 discriminacao
+discriminação
 discriminar
+discriminado
+discriminada
 odio
+ódio
 odio racial
+ódio racial
 intolerancia
+intolerância
+intolerante
 xenofobia
+xenofobo
+xenófobo
 homofobia
+homofobico
+homofóbico
+transfobia
+transfobico
+transfóbico
 segregacao
+segregação
+segregar
+segregado
 ofensa
+ofender
+ofensivo
 injuria
+injúria
+injuriar
+injurioso
+calunia
+calúnia
+caluniar
+difamacao
+difamação
+difamar
+discurso de odio
+discurso de ódio
+hate speech
+crime de odio
+crime de ódio
+grupo de ódio
+nazismo
+nazistas
+incitação ao ódio
+incitacao ao odio
+incitação ao ódio
+apologia ao odio
+apologia ao ódio
+discriminação racial
+discriminacao racial
+discriminação social
+discriminacao social
+preconceito racial
+preconceito social
 
 # ======================
 # DROGAS
 # ======================
-droga
-drogas
 entorpecente
-cocaina
-maconha
 heroina
 trafico de drogas
 traficante
@@ -239,11 +395,3 @@ overdose
 # ======================
 # POLÍTICA SENSÍVEL
 # ======================
-corrupcao
-corrupto
-escandalo
-fraude
-investigacao
-propina
-desvio
-lavagem de dinheiro
