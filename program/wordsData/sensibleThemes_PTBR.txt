@@ -131,6 +131,10 @@ tirar a própria vida
 enchetes
 eutanásia
 hospital
+diabetes
+câncer
+enterro
+funeral
 
 # ======================
 # CRIME
