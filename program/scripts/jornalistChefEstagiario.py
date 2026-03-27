@@ -1,4 +1,4 @@
-from .getRssFeed import getNews
+from getRssFeed import getNews
 from pathlib import Path
 import random
 import re
@@ -362,16 +362,16 @@ def getOneNews():
         return random.choice(desculpas)
 
     generators = [
-        lambda: makeDadaLikeNews(clean_news),
-        lambda: makeNewNewsShuffle(clean_news),
-        lambda: makeNewNewsShuffle(clean_news),
-        lambda: makeNewNewsShuffle(clean_news),
-        lambda: makeNewNewsShuffle(clean_news),
-        lambda: makeNewNewsShuffle(clean_news), #gambiarra, eu sei
+        #lambda: makeDadaLikeNews(clean_news),
+        #lambda: makeNewNewsShuffle(clean_news),
+        #lambda: makeNewNewsShuffle(clean_news),
+        #lambda: makeNewNewsShuffle(clean_news),
+        #lambda: makeNewNewsShuffle(clean_news),
+        #lambda: makeNewNewsShuffle(clean_news), #gambiarra, eu sei
         lambda: makeNewNewsChars(clean_news, wordLists["chars"]),
-        lambda: makeFirstPartNews(clean_news),
+        #lambda: makeFirstPartNews(clean_news),
         # lambda: makePlotTwistNews(clean_news), # não tô gostando dos resultados
-        lambda: makeNewNewsPlace(clean_news, wordLists["places"]),
+        #lambda: makeNewNewsPlace(clean_news, wordLists["places"]),
         lambda: combineStyles(
             clean_news,
             [
@@ -380,7 +380,7 @@ def getOneNews():
             ],
             wordLists
         ),
-        lambda: makeFakeStyleNews(clean_news, wordLists["chars"], wordLists["adjectives"]),
+        #lambda: makeFakeStyleNews(clean_news, wordLists["chars"], wordLists["adjectives"]),
     ]
 
     generated_list = random.choice(generators)()
