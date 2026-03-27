@@ -9,25 +9,120 @@ matar
 matou
 matando
 assassinato
+assassinar
 assassino
 homicidio
+homicídio
 execucao
+execução
 massacre
+chacina
+genocidio
+genocídio
+exterminio
+extermínio
+limpeza etnica
+terrorismo
+terrorista
 ataque
 ataques
+ataque armado
+ataque terrorista
+conflito
+conflito armado
+guerra
+guerra civil
+combate
 violencia
+violência
 violento
+violenta
 agressao
+agressão
 agredir
+agrediu
 espancamento
-tiro
-tiroteio
+espancar
+linchamento
+linchar
+sequestro
+sequestrar
+cativeiro
+cárcere
+cárcere privado
+tortura
+torturar
+abuso
+abusar
+violencia domestica
+violência doméstica
+violencia sexual
+violência sexual
+estupro
+violacao
+violação
 arma
+armas
 armado
+armada
+tiro
+tiros
+tiroteio
+disparo
+disparos
+balear
+balearam
+alvejado
+alvejada
+esfaqueamento
+esfaquear
+facada
+facadas
+envenenamento
+envenenar
 explosao
 explosão
 explodiu
-câncer
+bomba
+bombardeio
+bombardeios
+ataque aereo
+ataque aéreo
+decapitacao
+decapitação
+decapitar
+esquartejamento
+esquartejar
+enforcamento
+enforcar
+linchado
+linchamento
+ferido
+feridos
+ferimentos
+ferimento grave
+sangue
+sangrando
+sangramento
+cadaver
+cadáver
+corpo
+restos mortais
+obito
+óbito
+vitima fatal
+vítima fatal
+fatal
+fatalidade
+overdose
+suicidio
+suicídio
+automutilacao
+automutilação
+autolesao
+autolesão
+se cortar
+tirar a própria vida
 
 
 # ======================

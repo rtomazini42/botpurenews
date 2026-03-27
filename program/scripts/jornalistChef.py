@@ -2,6 +2,7 @@ from .getRssFeed import getNews
 from pathlib import Path
 import random
 import re
+import unicodedata
 
 base_dir = Path(__file__).resolve().parent
 words_dir = base_dir.parent / "wordsData"
@@ -17,7 +18,7 @@ def loadSensibleThemes(path):
             if line.strip() and not line.strip().startswith("#")
         ]
 
-def cleanSensibleNews(news_list, sensible_words):
+'''def cleanSensibleNews(news_list, sensible_words):
     #tirar e limpar as noticias que tem as palavras sensiveis
     clean = []
 
@@ -26,7 +27,33 @@ def cleanSensibleNews(news_list, sensible_words):
         if not any(word.lower() in text for word in sensible_words):
             clean.append(n)
 
+    return clean'''
+
+#teste de novo filtro
+def cleanSensibleNews(news_list, sensible_words):
+    clean = []
+
+    # normaliza a lista de palavras sensíveis
+    patterns = [
+        re.compile(rf'\b{re.escape(normalize(word))}\b')
+        for word in sensible_words
+    ]
+
+    for n in news_list:
+        text = normalize(n)
+
+        if not any(p.search(text) for p in patterns):
+            clean.append(n)
+
     return clean
+
+
+
+def normalize(text):
+    text = text.lower()
+    text = unicodedata.normalize('NFD', text)
+    text = ''.join(c for c in text if unicodedata.category(c) != 'Mn')
+    return text
 
 
 def loadWordLists():
