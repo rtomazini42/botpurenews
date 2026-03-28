@@ -200,6 +200,16 @@ Porto Nacional - TO
 Paraíso do Tocantins - TO
 Colinas do Tocantins - TO
 Guaraí - TO
+Recife - PE
+São Paulo - SP
+Rio de Janeiro - RJ
+João Pessoa - PB
+Natal - RN
+Manaus - AM
+Curitiba - PR
+Belo Horizonte - MG
+Porto Alegre - RS
+Salvador - BA
 USP
 UFPE
 UFRPE
@@ -259,3 +269,47 @@ Cabaré
 Parobé - RS
 Carpina - PE
 São João do Pipoco - RJ
+Recife - PE
+São Paulo - SP
+Rio de Janeiro - RJ
+João Pessoa - PB
+Natal - RN
+Manaus - AM
+Curitiba - PR
+Belo Horizonte - MG
+Porto Alegre - RS
+Salvador - BA
+Recife - PE
+São Paulo - SP
+Rio de Janeiro - RJ
+João Pessoa - PB
+Natal - RN
+Manaus - AM
+Curitiba - PR
+Belo Horizonte - MG
+Porto Alegre - RS
+Salvador - BA
+Recife - PE
+São Paulo - SP
+Rio de Janeiro - RJ
+João Pessoa - PB
+Natal - RN
+Manaus - AM
+Curitiba - PR
+Belo Horizonte - MG
+Porto Alegre - RS
+Salvador - BA
+Recife - PE
+São Paulo - SP
+Rio de Janeiro - RJ
+João Pessoa - PB
+Natal - RN
+Manaus - AM
+Curitiba - PR
+Belo Horizonte - MG
+Porto Alegre - RS
+Salvador - BA
+Porto Alegre - RS
+Salvador - BA
+Recife - PE
+São Paulo - SP
