@@ -226,7 +226,7 @@ def finalizeTitle(title):
     # 2. Limpeza de colisões (ex: "do em" -> "em")
     # Agora só remove se forem preposições grudadas, sem tocar na pontuação
     prep_collision = r'\b(com|de|do|da|em|no|na|para|por|e)\s+(com|de|do|da|em|no|na|para|por|e)\b'
-    # 🔥 remove "à," "ao," "a," quebrados
+    #  remove "à," "ao," "a," quebrados
     title = re.sub(r'\b(a|à|ao|aos|às)\s*,\s*', '', title, flags=re.IGNORECASE)
     title = re.sub(prep_collision, r'\2', title, flags=re.IGNORECASE)
     
@@ -234,14 +234,31 @@ def finalizeTitle(title):
     title = re.sub(r'\s+,', ',', title) # remove espaço antes
     title = re.sub(r',([^\s])', r', \1', title) # adiciona espaço depois se não tiver
     
+
     # 4. Remove preposição pendurada no FINAL (antes dos emojis/estilo)
     title = re.sub(r'\s+(com|de|do|da|em|no|na|para|e|o|a|os|as|que)$', '', title, flags=re.IGNORECASE)
+    
+    # remove repetição de palavras
+    title = avoidRepetition(title)
     title = applyContractions(title)
     # 5. Capitalização
     if len(title) > 0:
         title = title[0].upper() + title[1:]
         
     return title
+
+def avoidRepetition(text):
+    words = text.split()
+    if not words:
+        return text
+
+    result = [words[0]]
+
+    for w in words[1:]:
+        if w.lower() != result[-1].lower():
+            result.append(w)
+
+    return " ".join(result)
 
 def isValidPart(text):
     if not text or len(text.split()) < 2:
@@ -266,6 +283,32 @@ def makeNewNewsShuffle(news_list):
 
         # Adicionamos uma vírgula na união para dar ritmo
         new_title = f"{p1}, {p2}".strip()
+        new_title = applyNewsStyle(new_title)
+        new_news.append(new_title)
+
+    return new_news
+
+def cahosmakeNewNewsShuffle(news_list):
+    if len(news_list) < 3:
+        return []
+    
+    new_news = []
+
+    for _ in range(len(news_list)):
+        n1, n2, n3 = random.sample(news_list, 3)
+
+        p1, _ = smartCut(n1)
+        mid1, mid2 = smartCut(n2)
+        _, p3 = smartCut(n3)
+
+        # tenta pegar um "miolo" melhor
+        middle = mid2 if isValidPart(mid2) else mid1
+
+        if not isValidPart(p1) or not isValidPart(middle) or not isValidPart(p3):
+            continue
+
+        new_title = f"{p1}, {middle}, {p3}".strip()
+
         new_title = applyNewsStyle(new_title)
         new_news.append(new_title)
 
@@ -579,9 +622,15 @@ def getOneNews():
         ), 1),
         (lambda: makeNewNewsShuffle(clean_news), 6),
         (lambda: makeNewNewsChars(clean_news, wordLists["chars"]), 4),
+        (lambda: makeDadaLikeNews(clean_news) + makeNewNewsChars(clean_news, wordLists["chars"]) + makeNewNewsPlace(clean_news, wordLists["places"]) , 1),
+        (lambda: makeNewNewsShuffle(clean_news) + makeNewNewsChars(clean_news, wordLists["chars"]) + makeNewNewsPlace(clean_news, wordLists["places"]) , 1),
+        (lambda: makeFirstPartNews(clean_news) + makeNewNewsChars(clean_news, wordLists["chars"]) + makeFirstPartNews(clean_news) , 3),
         (lambda: makeFirstPartNews(clean_news), 1),
         (lambda: makeNewNewsPlace(clean_news, wordLists["places"]), 3),
         (lambda: makeDadaLikeNews(clean_news),3),
+        (lambda: makeDadaLikeNews(clean_news) + cahosmakeNewNewsShuffle(clean_news) + makeNewNewsPlace(clean_news, wordLists["places"]) , 3),
+        (lambda: cahosmakeNewNewsShuffle(clean_news) + makeNewNewsChars(clean_news, wordLists["chars"]) + makeNewNewsPlace(clean_news, wordLists["places"]) , 1),
+        (lambda: cahosmakeNewNewsShuffle(clean_news),6),
     ]
 
     funcs = [g for g, _ in generators]
