@@ -113,6 +113,13 @@ sangramento
 cadaver
 cadáver
 corpo
+morta
+feminicídio
+sequestrada
+desaparecida
+desaparecido
+suicída
+suicida
 restos mortais
 obito
 óbito
