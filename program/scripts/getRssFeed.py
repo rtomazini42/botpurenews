@@ -33,10 +33,10 @@ def getNews():
             if hasattr(entry, "title"):
                 titlesNews.append(entry.title)
 
-
+    titlesNews = list(set(titlesNews))
     random.shuffle(titlesNews)  
 
-    return titlesNews[:30]
+    return titlesNews[:32]
 
 
 
