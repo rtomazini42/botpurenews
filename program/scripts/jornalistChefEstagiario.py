@@ -546,6 +546,42 @@ def splitByCommaStyle(title):
 
     return title
 
+
+#tinha isso em outra versão, vai ser foda
+def randomWordSwap(title, wordLists):
+    # alterar chances
+    if random.random() > 0.18:
+        return title
+
+    words = title.split()
+    
+    # pega  palavras com mais de 5 letras
+    valid_indices = [
+        i for i, w in enumerate(words)
+        if len(re.sub(r'[^\w]', '', w)) > 5
+    ]
+
+    if not valid_indices:
+        return title
+
+    idx = random.choice(valid_indices)
+
+    # juntar pools de substituição ?
+    pool = wordLists.get("objects", [])# + wordLists.get("chars", [])
+    if not pool:
+        return title
+
+    replacement = random.choice(pool)
+
+    # mantém pontuação original da palavra
+    prefix = re.match(r'^\W*', words[idx]).group()
+    suffix = re.match(r'.*?(\W*)$', words[idx]).group(1)
+
+    words[idx] = f"{prefix}{replacement}{suffix}"
+
+    return " ".join(words)
+
+
 # Essa aqui vou botar para testar
 def getOneNews():
     sensibleThemes = loadSensibleThemes(caminho)
@@ -620,7 +656,7 @@ def getOneNews():
             ],
             wordLists
         ), 1),
-        (lambda: makeNewNewsShuffle(clean_news), 6),
+        (lambda: makeNewNewsShuffle(clean_news), 3),
         (lambda: makeNewNewsChars(clean_news, wordLists["chars"]), 4),
         (lambda: makeDadaLikeNews(clean_news) + makeNewNewsChars(clean_news, wordLists["chars"]) + makeNewNewsPlace(clean_news, wordLists["places"]) , 1),
         (lambda: makeNewNewsShuffle(clean_news) + makeNewNewsChars(clean_news, wordLists["chars"]) + makeNewNewsPlace(clean_news, wordLists["places"]) , 1),
@@ -697,6 +733,7 @@ def getOneNews():
     else:
         return applyNewsStyle(random.choice(clean_news))
 
+    titulo = randomWordSwap(titulo, wordLists)
     titulo = finalizeTitle(titulo)
     pontuacao = ['','','','.','?','!','!!!','',' #post',' ','',''] #gambiarra passou para cá
     titulo = titulo.strip() + random.choice(pontuacao)

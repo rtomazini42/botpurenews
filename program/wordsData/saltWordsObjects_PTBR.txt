@@ -150,3 +150,190 @@ controle sem pilha
 geladeira aberta
 micro-ondas ligado vazio
 ventilador barulhento
+tampa de panela perdida
+controle que não é desse aparelho
+cabo que ninguém sabe de onde veio
+carregador que só funciona inclinado
+fone só de um lado
+meia sem par
+meia suspeita
+chinelo invertido
+chinelo estourado
+garfo torto
+colher misteriosa
+faca sem cabo
+prato lascado
+copo rachado
+copo meio molhado
+garrafa vazando
+garrafa esquecida
+caneca com frase duvidosa
+caneca lascada
+caderno abandonado
+página rasgada
+livro nunca terminado
+livro aberto na mesma página desde 2012
+marca-texto seco
+caneta sem tinta
+caneta mordida
+lápis minúsculo
+borracha inútil
+teclado engordurado
+tecla que não volta
+mouse com raiva
+mouse sensível demais
+mouse completamente imóvel
+monitor piscando
+tela congelada
+janela que não abre
+porta que não fecha
+porta suspeita
+porta trancada por dentro
+cadeira rangendo
+cadeira duvidosa
+mesa instável
+mesa improvisada
+ventilador girando torto
+ventilador possuído
+ar condicionado imaginário
+controle quebrado emocionalmente
+controle com fita adesiva
+controle universal que não controla nada
+celular descarregado
+celular quente demais
+celular com 1% eterno
+notificação fantasma
+app que não responde
+wifi instável
+wifi inexistente
+roteador piscando desesperado
+modem em sofrimento
+cabo ethernet solto
+extensão duvidosa
+benjamim sobrecarregado
+tomada suspeita
+tomada que dá choque
+fio misterioso
+fio desencapado 2
+fio que ninguém mexe
+luz piscando
+lâmpada cansada
+lâmpada que não decide
+sombra estranha
+reflexo duvidoso
+espelho suspeito
+espelho que julga
+cortina observando
+cortina imóvel demais
+almofada triste
+travesseiro deformado
+cobertor que não esquenta
+lençol rebelde
+tapete torto
+tapete perigoso
+tapete que escorrega
+poeira acumulada
+poeira histórica
+mancha inexplicável
+mancha que cresce
+mancha suspeita
+cheiro estranho
+cheiro persistente
+barulho vindo de lugar nenhum
+barulho recorrente
+som distante
+eco inexplicável
+sussurro inexistente
+objeto fora do lugar
+objeto no lugar errado
+coisa que caiu sozinha
+coisa que apareceu do nada
+coisa que sumiu
+coisa que voltou
+entidade doméstica
+presença duvidosa
+energia estranha
+vibe errada
+situação desconfortável
+clima suspeito
+momento estranho
+evento canônico
+erro inesperado
+erro esperado
+bug visual
+bug físico
+glitch na realidade
+falha na matriz
+realidade alternativa
+universo paralelo
+dimensão errada
+portal improvisado
+loop temporal
+tempo estranho
+tempo quebrado
+tempo bugado
+relógio atrasado emocionalmente
+relógio adiantado demais
+alarme ignorado
+alarme traumático
+notificação atrasada
+mensagem não enviada
+mensagem enviada sem querer
+áudio de 7 minutos
+áudio impossível de ouvir
+print comprometedor
+print cortado
+print fora de contexto
+print suspeito
+arquivo corrompido
+arquivo perdido
+backup inexistente
+backup suspeito
+pendrive duvidoso
+pendrive misterioso
+HD externo barulhento
+memória cheia
+memória confusa
+memória falsa
+ideia ruim
+ideia pior ainda
+decisão questionável
+decisão duvidosa
+plano mal elaborado
+plano que parecia bom
+situação fora de controle
+situação sob controle (mentira)
+controle perdido
+controle inexistente
+esperança baixa
+motivação negativa
+energia zero
+energia suspeita
+cansaço acumulado
+sono atrasado
+sono inexistente
+vontade duvidosa
+coragem questionável
+confiança errada
+erro coletivo
+culpa compartilhada
+responsabilidade desconhecida
+consequência inesperada
+resultado estranho
+final alternativo
+final ruim
+final pior ainda
+continuação desnecessária
+cobertor
+gibi
+meia calça
+cabelo
+lenço
+cachorro
+cão
+consolo de borracha
+console
+telefone
+Wii U
+PS4
+PS5
