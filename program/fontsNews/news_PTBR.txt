@@ -10,13 +10,8 @@ https://feeds.folha.uol.com.br/poder/rss091.xml
 https://feeds.folha.uol.com.br/mundo/rss091.xml
 https://feeds.folha.uol.com.br/tec/rss091.xml
 https://feeds.bbci.co.uk/portuguese/rss.xml
-https://admin.cnnbrasil.com.br/sitemap-news.xml
 https://rss.uol.com.br/feed/tecnologia.xml
 https://rss.uol.com.br/feed/jogos.xml
-https://www.gazetadopovo.com.br/feed/rss/tudo-sobre/china.xml
-https://www.gazetadopovo.com.br/feed/rss/cultura.xml
-https://www.gazetadopovo.com.br/feed/rss/ultimas-noticias.xml
-https://www.gazetadopovo.com.br/feed/rss/tudo-sobre/big-techs.xml
 https://www.camara.leg.br/noticias/rss/ultimas-noticias
 https://www.camara.leg.br/noticias/rss/dinamico/ECONOMIA
 https://g1.globo.com/rss/g1/pop-arte/
